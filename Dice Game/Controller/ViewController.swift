@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         view.addSubview(colorStack)
         view.addSubview(rollBtn)
         view.addSubview(diceStack)
+        view.addSubview(scoreLbl)
         conf()
     }
     
@@ -73,6 +74,7 @@ class ViewController: UIViewController {
         if color == view.backgroundColor {
             return
         }
+        scoreLbl.textColor = color
         viewsColorBtn.backgroundColor = color
         viewsColorBtn.tintColor = view.backgroundColor
         bgColorBtn.backgroundColor = color
@@ -86,7 +88,14 @@ class ViewController: UIViewController {
     }
     
     
-    
+    private let scoreLbl: UILabel = {
+        let label = UILabel()
+        label.text = "SOME TEXT"
+        label.textColor = .orange
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.isHidden = true
+        return label
+    }()
     
     
     
@@ -104,8 +113,18 @@ class ViewController: UIViewController {
     }()
     
     @objc func roll() {
-        dice_1.image = UIImage(named: "dice\(Int.random(in: 1...6))")?.withRenderingMode(.alwaysTemplate)
-        dice_2.image = UIImage(named: "dice\(Int.random(in: 1...6))")?.withRenderingMode(.alwaysTemplate)
+        
+        let newDice_1 = Dices.dices.randomElement()
+        let newDice_2 = Dices.dices.randomElement()
+        
+        //dice_1.image = UIImage(named: "dice\(Int.random(in: 1...6))")?.withRenderingMode(.alwaysTemplate)
+        //dice_2.image = UIImage(named: "dice\(Int.random(in: 1...6))")?.withRenderingMode(.alwaysTemplate)
+        dice_1.image = newDice_1?.dice.withRenderingMode(.alwaysTemplate)
+        dice_2.image = newDice_2?.dice.withRenderingMode(.alwaysTemplate)
+        
+        scoreLbl.isHidden = false
+        scoreLbl.text = String("SCORE:  ") + String(newDice_1!.number + newDice_2!.number)
+        
     }
     
     
@@ -157,6 +176,12 @@ class ViewController: UIViewController {
         dice_2.snp.makeConstraints { make in
             make.height.equalTo(100)
             make.width.equalTo(100)
+        }
+        
+        
+        scoreLbl.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(diceStack.snp_topMargin).offset(-30)
         }
         
         

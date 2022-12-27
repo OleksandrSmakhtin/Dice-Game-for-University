@@ -13,6 +13,7 @@
 		443FCF7529588C5A00130CE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 443FCF7429588C5A00130CE8 /* Assets.xcassets */; };
 		443FCF7829588C5A00130CE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 443FCF7629588C5A00130CE8 /* LaunchScreen.storyboard */; };
 		443FCF8C2958939600130CE8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 443FCF8B2958939600130CE8 /* SnapKit */; };
+		443FCF91295B3A0C00130CE8 /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FCF90295B3A0C00130CE8 /* Dice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		443FCF7429588C5A00130CE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		443FCF7729588C5A00130CE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		443FCF7929588C5A00130CE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		443FCF90295B3A0C00130CE8 /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,14 +58,39 @@
 		443FCF6A29588C5900130CE8 /* Dice Game */ = {
 			isa = PBXGroup;
 			children = (
+				443FCF8F295B39FA00130CE8 /* Model */,
+				443FCF8E295B39EB00130CE8 /* View */,
+				443FCF8D295B39DB00130CE8 /* Controller */,
 				443FCF6B29588C5900130CE8 /* AppDelegate.swift */,
 				443FCF6D29588C5900130CE8 /* SceneDelegate.swift */,
-				443FCF6F29588C5900130CE8 /* ViewController.swift */,
 				443FCF7429588C5A00130CE8 /* Assets.xcassets */,
 				443FCF7629588C5A00130CE8 /* LaunchScreen.storyboard */,
 				443FCF7929588C5A00130CE8 /* Info.plist */,
 			);
 			path = "Dice Game";
+			sourceTree = "<group>";
+		};
+		443FCF8D295B39DB00130CE8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				443FCF6F29588C5900130CE8 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		443FCF8E295B39EB00130CE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		443FCF8F295B39FA00130CE8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				443FCF90295B3A0C00130CE8 /* Dice.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +171,7 @@
 			files = (
 				443FCF7029588C5900130CE8 /* ViewController.swift in Sources */,
 				443FCF6C29588C5900130CE8 /* AppDelegate.swift in Sources */,
+				443FCF91295B3A0C00130CE8 /* Dice.swift in Sources */,
 				443FCF6E29588C5900130CE8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
