@@ -21,11 +21,9 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(colorStack)
-        view.addSubview(rollBtn)
-        view.addSubview(diceStack)
-        view.addSubview(scoreLbl)
-        conf()
+        view.backgroundColor = UIColor.black
+        addAllSubviews()
+        configureView()
     }
     
     
@@ -43,15 +41,20 @@ class ViewController: UIViewController {
     
 
     @objc func changeBg() {
-        
         let color = colors.randomElement()
+        
         if color == rollBtn.backgroundColor {
-            return
+            let newColor = colors.randomElement()
+            view.backgroundColor = newColor
+            bgColorBtn.setTitleColor(newColor, for: .normal)
+            rollBtn.setTitleColor(newColor, for: .normal)
+            viewsColorBtn.setTitleColor(newColor, for: .normal)
+        } else {
+            view.backgroundColor = color
+            bgColorBtn.setTitleColor(color, for: .normal)
+            rollBtn.setTitleColor(color, for: .normal)
+            viewsColorBtn.setTitleColor(color, for: .normal)
         }
-        view.backgroundColor = color
-        bgColorBtn.setTitleColor(color, for: .normal)
-        rollBtn.setTitleColor(color, for: .normal)
-        viewsColorBtn.setTitleColor(color, for: .normal)
         
     }
     
@@ -72,25 +75,27 @@ class ViewController: UIViewController {
         
         let color = colors.randomElement()
         if color == view.backgroundColor {
-            return
+            let newColor = colors.randomElement()
+            scoreLbl.textColor = newColor
+            viewsColorBtn.backgroundColor = newColor
+            bgColorBtn.backgroundColor = newColor
+            rollBtn.backgroundColor = newColor
+            dice_1.tintColor = newColor
+            dice_2.tintColor = newColor
+        } else {
+            scoreLbl.textColor = color
+            viewsColorBtn.backgroundColor = color
+            bgColorBtn.backgroundColor = color
+            rollBtn.backgroundColor = color
+            dice_1.tintColor = color
+            dice_2.tintColor = color
         }
-        scoreLbl.textColor = color
-        viewsColorBtn.backgroundColor = color
-        viewsColorBtn.tintColor = view.backgroundColor
-        bgColorBtn.backgroundColor = color
-        bgColorBtn.tintColor = view.backgroundColor
-        print(view.backgroundColor)
-        rollBtn.backgroundColor = color
-        dice_1.tintColor = color
-        dice_2.tintColor = color
-        
-        
     }
     
     
     private let scoreLbl: UILabel = {
         let label = UILabel()
-        label.text = "SOME TEXT"
+        label.text = ""
         label.textColor = .orange
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.isHidden = true
@@ -117,8 +122,6 @@ class ViewController: UIViewController {
         let newDice_1 = Dices.dices.randomElement()
         let newDice_2 = Dices.dices.randomElement()
         
-        //dice_1.image = UIImage(named: "dice\(Int.random(in: 1...6))")?.withRenderingMode(.alwaysTemplate)
-        //dice_2.image = UIImage(named: "dice\(Int.random(in: 1...6))")?.withRenderingMode(.alwaysTemplate)
         dice_1.image = newDice_1?.dice.withRenderingMode(.alwaysTemplate)
         dice_2.image = newDice_2?.dice.withRenderingMode(.alwaysTemplate)
         
@@ -144,11 +147,15 @@ class ViewController: UIViewController {
     
     
     
+    func addAllSubviews() {
+        view.addSubview(colorStack)
+        view.addSubview(rollBtn)
+        view.addSubview(diceStack)
+        view.addSubview(scoreLbl)
+    }
     
     
-    
-    func conf() {
-        
+    func configureView() {
         colorStack.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(50)
             make.leading.equalToSuperview().inset(20)
@@ -159,7 +166,6 @@ class ViewController: UIViewController {
         colorStack.addArrangedSubview(bgColorBtn)
         colorStack.addArrangedSubview(viewsColorBtn)
         
-        
         bgColorBtn.snp.makeConstraints { make in
             make.width.equalTo(110)
         }
@@ -167,7 +173,6 @@ class ViewController: UIViewController {
         viewsColorBtn.snp.makeConstraints { make in
             make.width.equalTo(110)
         }
-        
         
         dice_1.snp.makeConstraints { make in
             make.height.equalTo(100)
@@ -178,12 +183,10 @@ class ViewController: UIViewController {
             make.width.equalTo(100)
         }
         
-        
         scoreLbl.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(diceStack.snp_topMargin).offset(-30)
         }
-        
         
         diceStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
